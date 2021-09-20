@@ -97,6 +97,7 @@ async def on_command_error(ctx, error):
 
 # join voice channel of caller
 @bot.command(description="Add another channel", aliases=["Add", "ADD"])
+@commands.has_permissions(administrator=True)
 async def add(ctx, name, limit, password):
 
     global channels
@@ -120,6 +121,7 @@ async def add(ctx, name, limit, password):
 
 # reset channels
 @bot.command(description="Remove all channels from data", aliases=["Reset", "RESET"])
+@commands.has_permissions(administrator=True)
 async def reset(ctx):
 
     global channels
