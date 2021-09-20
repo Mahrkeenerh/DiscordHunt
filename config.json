@@ -1,0 +1,12 @@
+{
+    "TOKEN": "your TOKEN goes here",
+    "BOT_NAME": "Hunt#9965",
+    "channels": [
+        {
+            "name": "aaaaa",
+            "limit": 10,
+            "claimed": 0,
+            "password": "pswd"
+        }
+    ]
+}
