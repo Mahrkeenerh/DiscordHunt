@@ -4,7 +4,6 @@ from discord.utils import get
 
 
 TOKEN = ""
-BOT_NAME = ""
 channels = {}
 
 intents = discord.Intents.default()
@@ -15,23 +14,22 @@ bot = commands.Bot(command_prefix = '!', intents=intents)
 # load config
 def load():
 
-    global TOKEN, BOT_NAME, channels
+    global TOKEN, channels
 
     with open("config.json") as json_file:
         config = json.load(json_file)
 
         TOKEN = config["TOKEN"]
-        BOT_NAME = config["BOT_NAME"]
         channels = config["channels"]
 
 
 # save config
 def save():
 
-    global TOKEN, BOT_NAME, channels
+    global TOKEN, channels
 
     with open("config.json", "w") as json_file:
-        json.dump({"TOKEN": TOKEN, "BOT_NAME": BOT_NAME, "channels": channels}, json_file)
+        json.dump({"TOKEN": TOKEN, "channels": channels}, json_file)
 
 
 ######################### BOT EVENTS
@@ -41,9 +39,9 @@ def save():
 @bot.event
 async def on_message(message):
 
-    global channels, BOT_NAME
+    global channels
 
-    if str(message.author) == BOT_NAME:
+    if message.author == bot.user:
         return
 
     # a PM is received
