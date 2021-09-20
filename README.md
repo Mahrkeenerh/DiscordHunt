@@ -1,11 +1,11 @@
-# DISCORD MUSIC BOT
+# DISCORD CHANNEL WHITELIST BOT
 
-This project serves learning purpose. It's not supposed to be used in anything other than a private bot (not that I can stop you, nor will I try to).
+This bot will add members to channels based on a provided password.
 
 # SET-UP GUIDE
 
-Lorem ipsum dolor sit.
+Download python, add Python to PATH.
 
-# Based on:
+Install requirements with: `pip install -r requirements.txt`
 
-https://github.com/eric-yeung/Discord-Bot
+Run [Hunt.py](Hunt.py)

@@ -1,4 +1,3 @@
-from gc import DEBUG_SAVEALL
 import discord, json
 from discord.ext import commands
 from discord.utils import get
