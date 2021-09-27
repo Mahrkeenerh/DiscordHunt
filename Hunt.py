@@ -1,4 +1,4 @@
-import discord, json
+import discord, json, random
 from discord.ext import commands
 from discord.utils import get
 
@@ -65,7 +65,7 @@ async def on_message(message):
                     continue
 
                 target = get(bot.get_all_channels(), name=channel["name"])
-                await target.set_permissions(message.author, read_messages=True, send_messages=True)
+                await target.set_permissions(message.author, read_messages=True, send_messages=False)
 
                 channel["claimed"] += 1
                 save()
@@ -73,7 +73,7 @@ async def on_message(message):
                 await message.channel.send("You've been added to: " + channel["name"])
 
                 if channel["claimed"] == channel["limit"]:
-                    await target.send("This channel is now full.")
+                    await target.send("The Chosen One for the Native Mystery will be announced any moment.")
     
     await bot.process_commands(message)
 
@@ -130,6 +130,20 @@ async def reset(ctx):
     save()
 
     await ctx.channel.send("Success")
+
+
+# choose random winner
+@bot.command(description="Choose a random winner", aliases=["Draw", "DRAW"])
+@commands.has_permissions(administrator=True)
+async def draw(ctx):
+
+    winner = random.choice(ctx.channel.members)
+
+    while winner.bot or winner == ctx.author:
+        winner = random.choice(ctx.channel.members)
+
+    await ctx.channel.set_permissions(winner, read_messages=True, send_messages=True)
+    await ctx.channel.send("The Chosen One of the Native Mystery is <@%d>. Send your wallet address in this channel to claim your Native. If the Native is not claimed within 10 minutes, someone else will be chosen." % winner.id)
 
 
 load()
